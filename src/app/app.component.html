@@ -1,5 +1,6 @@
 <div class="container">
-  <form>
+  <h1 class="text-center mt-4">Formulario MAERSK</h1>
+  <form #activationForm="ngForm">
     <div class="form-group">
       <label for="textBox">Caja de Texto</label>
       <input
@@ -7,6 +8,10 @@
         class="form-control"
         id="textBox"
         placeholder="Obligatorio"
+        name="textBox"
+        [(ngModel)]="textBox"
+        (ngModelChange)="validarForm()"
+        required
       />
     </div>
     <div class="form-group">
@@ -16,24 +21,48 @@
         class="form-control"
         id="textNumber"
         placeholder="Obligatorio"
+        name="textNumber"
+        [(ngModel)]="textNumber"
+        (ngModelChange)="validarForm()"
+        required
       />
     </div>
     <div class="form-group">
       <label for="controlSelector">Selector</label>
-      <select class="form-control" id="controlSelector">
+      <select
+        class="form-control"
+        id="controlSelector"
+        name="controlSelector"
+        [(ngModel)]="controlSelector"
+        (ngModelChange)="validarForm()"
+        required
+      >
         <option>1</option>
         <option>2</option>
         <option>3</option>
         <option>4</option>
-        <option>5</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="commentArea">Comentario</label>
-      <textarea class="form-control" id="commentArea" rows="3"></textarea>
+      <textarea
+        class="form-control"
+        id="commentArea"
+        rows="3"
+        name="commentArea"
+        [(ngModel)]="commentArea"
+        placeholder="Opcional"
+      ></textarea>
     </div>
-
-    <button>Ingresar datos</button>
+    <br />
+    <button
+      class="btn btn-success"
+      (click)="registerForm()"
+      [disabled]="activationForm.form.invalid"
+      translate="activation.form.invalid"
+    >
+      Ingresar datos
+    </button>
   </form>
 </div>
